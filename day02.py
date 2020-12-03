@@ -30,8 +30,8 @@ def is_valid_password2(line):
 
 def main():
     puzzle_input = adventofcode.read_input(2)
-    adventofcode.answer(1, 454, sum([1 if is_valid_password(password) else 0 for password in puzzle_input]))
-    adventofcode.answer(2, 649, sum([1 if is_valid_password2(password) else 0 for password in puzzle_input]))
+    adventofcode.answer(1, 454, sum(1 if is_valid_password(password) else 0 for password in puzzle_input))
+    adventofcode.answer(2, 649, sum(1 if is_valid_password2(password) else 0 for password in puzzle_input))
 
 if __name__ == "__main__":
     import doctest

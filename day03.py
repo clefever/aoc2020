@@ -1,50 +1,40 @@
 import adventofcode
+import math
+
+test_slope = [
+    '..##.......',
+    '#...#...#..',
+    '.#....#..#.',
+    '..#.#...#.#',
+    '.#...##..#.',
+    '..#.##.....',
+    '.#.#.#....#',
+    '.#........#',
+    '#.##...#...',
+    '#...##....#',
+    '.#..#...#.#'
+]
 
 def tree_count(slope_map, right, down):
     """
-    >>> tree_count(['..##.......',\
-    '#...#...#..',\
-    '.#....#..#.',\
-    '..#.#...#.#',\
-    '.#...##..#.',\
-    '..#.##.....',\
-    '.#.#.#....#',\
-    '.#........#',\
-    '#.##...#...',\
-    '#...##....#',\
-    '.#..#...#.#'], 3, 1)
+    >>> tree_count(test_slope, 3, 1)
     7
     """
     trees = 0
     x_loc = 0
     for line in slope_map[down::down]:
-        x_loc += right
-        if x_loc >= len(line):
-            x_loc %= len(line)
+        x_loc = (x_loc + right) % len(line)
         if line[x_loc] == '#':
             trees += 1
     return trees
 
 def all_slopes(slope_map):
     """
-    >>> all_slopes(['..##.......',\
-    '#...#...#..',\
-    '.#....#..#.',\
-    '..#.#...#.#',\
-    '.#...##..#.',\
-    '..#.##.....',\
-    '.#.#.#....#',\
-    '.#........#',\
-    '#.##...#...',\
-    '#...##....#',\
-    '.#..#...#.#'])
+    >>> all_slopes(test_slope)
     336
     """
-    product = 1
     slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
-    for slope in slopes:
-        product *= tree_count(slope_map, slope[0], slope[1])
-    return product
+    return math.prod(tree_count(slope_map, slope[0], slope[1]) for slope in slopes)
 
 def main():
     puzzle_input = adventofcode.read_input(3)
