@@ -1,5 +1,5 @@
 import adventofcode
-import math
+from math import prod
 
 test_slope = [
     '..##.......',
@@ -34,7 +34,7 @@ def all_slopes(slope_map):
     336
     """
     slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
-    return math.prod(tree_count(slope_map, slope[0], slope[1]) for slope in slopes)
+    return prod(tree_count(slope_map, slope[0], slope[1]) for slope in slopes)
 
 def main():
     puzzle_input = adventofcode.read_input(3)
